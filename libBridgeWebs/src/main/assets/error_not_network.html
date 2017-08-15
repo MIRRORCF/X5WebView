@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Not NetWork</title>
+</head>
+<body>
+<p>错误：未连接到服务器</p>
+<p>原因：无网络或连接服务器失败！</p>
+<p>
+    <input type="button" id="reload" value="重新加载" onclick="onReload()">
+</p>
+</body>
+<script>
+     <!--重新加载按钮时必须实现window.prompt("OnReload","Ok")方法;-->
+    function onReload() {
+        window.prompt("OnReload","Ok");
+    }
+</script>
+</html>

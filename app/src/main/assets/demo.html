@@ -1,0 +1,109 @@
+<html>
+    <head>
+        <meta content="text/html; charset=gbk" http-equiv="content-type">
+        <title>
+            js调用java
+        </title>
+    </head>
+    
+    <body>
+        <p>
+            <xmp id="show">
+            </xmp>
+        </p>
+        <p>
+            <xmp id="init">
+            </xmp>
+        </p>
+        <p>
+            <input type="text" id="text1" placeholder="username" />
+        </p>
+        <p>
+            <input type="text" id="text2" placeholder="password" />
+        </p>
+        <p>
+            <input type="button" id="enter" value="发消息给Native" onclick="testClick();"
+            />
+        </p>
+        <p>
+            <input type="button" id="enter1" value="获取Native消息" onclick="testClick1();"
+            />
+        </p>
+        <p>
+            <a href="https://www.baidu.com">访问百度</a>
+        </p>
+    </body>
+    <script>
+
+        function testClick() {
+            var str1 = document.getElementById("text1").value;
+            var str2 = document.getElementById("text2").value;
+
+            //send message to native
+            var data = "username:" + str1 + "     "+"password: " + str2;
+            <!--此方法向Android端发送消息，Android端将自动调用-->
+            window.WebViewJavascriptBridge.send(
+                data
+                , function(responseData) {
+                    document.getElementById("show").innerHTML = "repsonseData from java, data = " + responseData
+                }
+            );
+        }
+
+        function testClick1() {
+            var str1 = document.getElementById("text1").value;
+            var str2 = document.getElementById("text2").value;
+
+
+            //call native method
+            <!--此方法需主动调用，接受Android端消息-->
+            window.WebViewJavascriptBridge.callHandler(
+                'submitFromWeb'
+                , {'param': '中文测试'}
+                , function(responseData) {
+                    document.getElementById("show").innerHTML = "send get responseData from java, data = " + responseData
+                }
+            );
+        }
+
+
+        function bridgeLog(logContent) {
+            document.getElementById("show").innerHTML = logContent;
+        }
+
+         <!--此方法用于检测WebViewJavascriptBridge.js文件的存在-->
+        function connectWebViewJavascriptBridge(callback) {
+            if (window.WebViewJavascriptBridge) {
+                callback(WebViewJavascriptBridge)
+            } else {
+                document.addEventListener(
+                    'WebViewJavascriptBridgeReady'
+                    , function() {
+                        callback(WebViewJavascriptBridge)
+                    },
+                    false
+                );
+            }
+        }
+
+        connectWebViewJavascriptBridge(function(bridge) {
+         <!--此方法自动调用，接受Android端消息-->
+            bridge.init(function(message, responseCallback) {
+                console.log('JS got a message', message);
+                var data = {
+                    'Javascript Responds': '测试中文!'
+                };
+                console.log('JS responding with', data);
+                responseCallback(data);
+            });
+
+            <!--此方法向Android端发送消息，Android端需手动调用-->
+            bridge.registerHandler("functionInJs", function(data, responseCallback) {
+                document.getElementById("show").innerHTML = ("data from Java: = " + data);
+                var responseData = "Javascript Says Right back aka!";
+                responseCallback(responseData);
+            });
+        })
+    </script>
+
+</html>
