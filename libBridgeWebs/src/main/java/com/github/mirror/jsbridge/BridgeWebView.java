@@ -10,7 +10,6 @@ import android.util.AttributeSet;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import com.apkfuns.logutils.LogUtils;
 import com.tencent.smtt.sdk.CookieManager;
 import com.tencent.smtt.sdk.CookieSyncManager;
 import com.tencent.smtt.sdk.WebChromeClient;

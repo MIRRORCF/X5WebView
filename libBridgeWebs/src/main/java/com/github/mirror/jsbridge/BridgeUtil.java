@@ -1,7 +1,6 @@
 package com.github.mirror.jsbridge;
 
 import android.content.Context;
-import android.util.Base64;
 
 import com.tencent.smtt.sdk.WebView;
 

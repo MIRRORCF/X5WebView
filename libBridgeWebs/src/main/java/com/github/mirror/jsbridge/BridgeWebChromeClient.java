@@ -1,19 +1,14 @@
 package com.github.mirror.jsbridge;
 
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
 import android.webkit.GeolocationPermissions;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import com.apkfuns.logutils.LogUtils;
 import com.tencent.smtt.export.external.interfaces.GeolocationPermissionsCallback;
 import com.tencent.smtt.export.external.interfaces.JsPromptResult;
-import com.tencent.smtt.export.external.interfaces.JsResult;
-import com.tencent.smtt.sdk.WebBackForwardList;
 import com.tencent.smtt.sdk.WebChromeClient;
-import com.tencent.smtt.sdk.WebSettings;
 import com.tencent.smtt.sdk.WebView;
 
 /**

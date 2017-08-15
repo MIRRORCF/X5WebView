@@ -2,16 +2,12 @@ package com.github.mirror.jsbridge;
 
 import android.graphics.Bitmap;
 import android.text.TextUtils;
-import android.util.Log;
-import android.widget.Toast;
 
-import com.apkfuns.logutils.LogUtils;
 import com.tencent.smtt.export.external.interfaces.SslError;
 import com.tencent.smtt.export.external.interfaces.SslErrorHandler;
 import com.tencent.smtt.sdk.WebView;
 import com.tencent.smtt.sdk.WebViewClient;
 
-import java.io.File;
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 import java.util.List;

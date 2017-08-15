@@ -1,7 +1,5 @@
 package com.github.mirror.jsbridge;
 
-import com.apkfuns.logutils.LogUtils;
-
 public class DefaultHandler implements BridgeHandler{
 
 	String TAG = "DefaultHandler";
